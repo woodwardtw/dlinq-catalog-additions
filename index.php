@@ -31,7 +31,7 @@ function dlinq_cc_add_iframe ( $content ) {
    global $post;
    $post_id = $post->ID;
     if ( is_singular('course-listing') ) {
-        return $content . '<iframe src="https://experiments.middcreate.net/extras/catalog/?id='.$post_id.'"></iframe>';
+        return $content . '<iframe width="100%" height="2000px" src="https://experiments.middcreate.net/extras/catalog/?id='.$post_id.'"></iframe>';
     }
 
     return $content;
