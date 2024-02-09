@@ -1,0 +1,249 @@
+/* main catalog */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+#product-page footer .h2 {
+  font-family: Domine, georgia, serif;
+  font-style: normal;
+}
+
+#app-header {
+  background-color: #022543;
+}
+
+.Dropdown__Toggle--header:hover,
+.Dropdown__Toggle--cog:hover,
+.Dropdown__Toggle--header:focus,
+.Dropdown__Toggle--cog:focus {
+  color: #fff;
+}
+
+.feature-region {
+  display: none; /*revisit*/
+}
+
+#search-form .search-form-container {
+  background-color: #0d395f;
+}
+
+.header-nav li a {
+  color: #fff;
+}
+
+/*button stuff*/
+#enroll-hero span, #enroll-footer span {
+  border-radius: 0 !important;
+  background-color: #022543 ;
+  transition: all .4s ease;
+}
+
+#enroll-hero button, #enroll-footer button {
+  transition: all .4s ease;
+}
+
+#enroll-hero button:hover, #enroll-footer button:hover {
+  transform: scale(1.02);
+  box-shadow: 6px 6px #efefef;
+}
+
+/*individual course view*/
+#c-holder {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 60px;
+}
+
+#c-left,
+#c-right {
+  width: 520px;
+  max-width: 100%;
+}
+
+#c-left {
+  padding-left: 50px;
+}
+
+#c-left p,
+#c-left li,
+#c-right p,
+#c-right li,
+.full p,
+.full li {
+  font-size: 1.2rem;
+}
+
+#c-left iframe {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+#mailing {
+  background-color: #022543;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 0;
+  border: 0;
+}
+
+.excite {
+  border: 3px solid #022543;
+  padding: 20px;
+  box-shadow: -5px 5px #b9cddf;
+  display: block;
+  font-size: 1.2rem;
+  margin: 20px auto 40px auto;
+  max-width: 600px;
+}
+
+.bio {
+  background: #e5f1fa;
+  padding: 50px;
+}
+
+.full {
+  height: 100%;
+  margin: 50px 0;
+  padding: 50px;
+}
+
+.bio-pic {
+  float: left;
+  margin: 0 30px 30px 0;
+}
+
+.outcomes {
+  color: #fff;
+  background-color: #0d395f;
+  padding: 50px 40px;
+  margin-top: 40px;
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#mailing-div {
+  border: none;
+}
+
+/* The Modal (background) */
+#product-page .modal, #registration .modal,
+#faq-block .modal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#product-page  .modal-content, #registration .modal-content,
+#faq-block .modal-content{
+  background-color: #e5e4e2;
+  margin: 50px auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: clamp(300px, 500px, 95%);
+  border-radius: 0;
+}
+
+/* The Close Button */
+#product-page  .close, #registration .close,
+#faq-block .close{
+  color: #424242;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#product-page .close:hover,
+#product-page .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ProductIcon__LargeCircle--course {
+display: none;
+}
+
+
+/*#user-nav {
+display:none;
+}*/
+
+#faq-button{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  background: #1a8574;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .3s ease;
+  font-size:1.4rem;
+  font-weight: 700;
+  line-height: 35px;
+}
+
+#faq-button:hover {
+  transform: scale(1.2);
+}
+
+#faq-modal h2{
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  border-top: 1px solid #022543;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+#faq-block .modal-content {
+background-color: #fff;
+}
+
+
+/*get buttons in header to be white for admin view*/
+.css-rjq4yf-topNavBarItem .css-fhkclk-baseButton__content {
+color: #fff !important;
+}
+
+@media (max-width: 576px) {
+  .bio-pic {
+    margin: 40px auto;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  #c-left, #c-right{
+    padding-left: 20px;
+    padding-right: 20px;
+    }
+}
