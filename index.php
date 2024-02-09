@@ -28,8 +28,10 @@ function prefix_load_scripts() {
 
 /* Add a paragraph only to Pages. */
 function dlinq_cc_add_iframe ( $content ) {
+   global $post;
+   $post_id = $post->ID;
     if ( is_singular('course-listing') ) {
-        return $content . '<p>test content</p>';
+        return $content . '<iframe src="https://experiments.middcreate.net/extras/catalog/?id='.$post_id.'"></iframe>';
     }
 
     return $content;
