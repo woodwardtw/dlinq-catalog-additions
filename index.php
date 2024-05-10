@@ -92,12 +92,74 @@ function dlinq_cc_global_faq_repeater($content){
 add_filter( 'the_content', 'dlinq_cc_global_faq_repeater');
 
 function dlinq_cc_faq_html($title, $content){
-   return "<h2>Q: {$title}</h2>
-            {$content}";
+   return "<h2>Q: {$title}</h2>{$content}";
 }
 
 
-   //save acf json
+//MAKE IT WORK IN REST BRUTE FORCE
+add_action( 'rest_api_init', 'add_faqs_to_json' );
+function add_faqs_to_json() {
+ 
+    register_rest_field(
+        'page', //the post type of your choice
+        'faqs_bundle', //the name for your json element
+        array(
+            'get_callback'    => 'dlinq_cc_json_global_faq_repeater', //the function that creates the content 
+        )
+    );
+}
+
+
+function dlinq_cc_json_global_faq_repeater(){
+   global $post;
+   $post_id = $post->ID;
+       if ( get_field('activate_global_faqs', 'option') === 'true') {
+
+         //page specific FAQs
+         $page_html = '';
+          if( have_rows('faq', $post_id) ):
+
+             // Loop through rows.
+             while( have_rows('faq', $post_id) ) : the_row();
+
+                 // Load sub field value.
+                 $faq_title = get_sub_field('faq_title');
+                 $faq_content = get_sub_field('faq_text');
+                 // Do something...
+                  $page_html .= dlinq_cc_faq_html($faq_title,$faq_content);  
+             // End loop.
+             endwhile;
+             
+            // No value.
+            else :
+                // Do something...
+         endif;
+
+         //Global FAQs
+         if( have_rows('faq', 'option') ):
+            $global_html = '';
+             // Loop through rows and display if activate global faqs === true
+             while( have_rows('faq', 'option')) : the_row();
+
+                 // Load sub field value.
+                 $faq_title = get_sub_field('faq_title');
+                 $faq_content = get_sub_field('faq_text');
+                 // Do something...
+                 $global_html .= dlinq_cc_faq_html($faq_title,$faq_content);               
+             // End loop.
+             endwhile;
+            // No value.
+            else :
+                // Do something...
+            endif;
+         } else {
+         }
+         return str_replace(PHP_EOL, '',$page_html) . str_replace(PHP_EOL, '', $global_html);
+   }
+
+
+
+//save acf json
       add_filter('acf/settings/save_json', 'dlinq_cc_json_save_point');
        
       function dlinq_cc_json_save_point( $path ) {
