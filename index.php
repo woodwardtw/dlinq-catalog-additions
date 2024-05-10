@@ -2,7 +2,7 @@
 /*
 Plugin Name: DLINQ Catalog Additions
 Plugin URI:  https://github.com/
-Description: For stuff to deal with Canvas Catalog
+Description: Makes Canvas Catalog Descriptions HTML & FAQs
 Version:     1.0
 Author:      DLINQ
 Author URI:  https://dlinq.middcreate.net
@@ -26,7 +26,7 @@ function prefix_load_scripts() {
 }
 
 
-/* Add a paragraph only to Pages. */
+/* Add iframe just to course listings */
 function dlinq_cc_add_iframe ( $content ) {
    global $post;
    $post_id = $post->ID;
@@ -38,6 +38,73 @@ function dlinq_cc_add_iframe ( $content ) {
 }
 add_filter( 'the_content', 'dlinq_cc_add_iframe');
 
+
+//add the common FAQs to pages content
+
+function dlinq_cc_global_faq_repeater($content){
+       if ( is_page() ) {
+
+         if( have_rows('faq', 'option') ):
+            $html = '';
+             // Loop through rows.
+             while( have_rows('faq', 'option') ) : the_row();
+
+                 // Load sub field value.
+                 $faq_title = get_sub_field('faq_title');
+                 $faq_content = get_sub_field('faq_text');
+                 // Do something...
+                 $html .= "<h2>Q: {$faq_title}</h2>
+                           {$faq_content}
+                 ";
+             // End loop.
+             endwhile;
+             return $content . $html;
+            // No value.
+            else :
+                // Do something...
+            endif;
+         } else {
+            return $content;
+         }
+   }
+
+add_filter( 'the_content', 'dlinq_cc_global_faq_repeater');
+
+
+
+
+   //save acf json
+      add_filter('acf/settings/save_json', 'dlinq_cc_json_save_point');
+       
+      function dlinq_cc_json_save_point( $path ) {
+          
+          // update path
+          $path = plugin_dir_path(__FILE__) . '/acf-json'; //replace w get_stylesheet_directory() for theme
+          
+          
+          // return
+          return $path;
+          
+      }
+
+
+      // load acf json
+      add_filter('acf/settings/load_json', 'dlinq_cc_json_load_point');
+
+      function dlinq_cc_json_load_point( $paths ) {
+          
+          // remove original path (optional)
+          unset($paths[0]);
+          
+          
+          // append path
+          $paths[] = plugin_dir_path(__FILE__)  . '/acf-json';//replace w get_stylesheet_directory() for theme
+          
+          
+          // return
+          return $paths;
+          
+      }
 
 //LOGGER -- like frogger but more useful
 
