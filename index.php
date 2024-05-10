@@ -44,7 +44,7 @@ add_filter( 'the_content', 'dlinq_cc_add_iframe');
 function dlinq_cc_global_faq_repeater($content){
    global $post;
    $post_id = $post->ID;
-       if ( is_page() ) {
+       if ( is_page() && get_field('activate_global_faqs', 'option') === 'true') {
 
          //page specific FAQs
          $page_html = '';
@@ -70,7 +70,7 @@ function dlinq_cc_global_faq_repeater($content){
          if( have_rows('faq', 'option') ):
             $global_html = '';
              // Loop through rows and display if activate global faqs === true
-             while( have_rows('faq', 'option') && get_field('activate_global_faqs', 'option') === 'true') : the_row();
+             while( have_rows('faq', 'option')) : the_row();
 
                  // Load sub field value.
                  $faq_title = get_sub_field('faq_title');
@@ -79,15 +79,14 @@ function dlinq_cc_global_faq_repeater($content){
                  $global_html .= dlinq_cc_faq_html($faq_title,$faq_content);               
              // End loop.
              endwhile;
-             return $page_html . $global_html . $content;
             // No value.
             else :
                 // Do something...
-               return $content;
             endif;
          } else {
             return $content;
          }
+         return $page_html . $global_html;
    }
 
 add_filter( 'the_content', 'dlinq_cc_global_faq_repeater');
