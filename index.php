@@ -42,23 +42,44 @@ add_filter( 'the_content', 'dlinq_cc_add_iframe');
 //add the common FAQs to pages content
 
 function dlinq_cc_global_faq_repeater($content){
+   global $post;
+   $post_id = $post->ID;
        if ( is_page() ) {
 
-         if( have_rows('faq', 'option') ):
-            $html = '';
+         //page specific FAQs
+         $page_html = '';
+          if( have_rows('faq', $post_id) ):
+
              // Loop through rows.
-             while( have_rows('faq', 'option') ) : the_row();
+             while( have_rows('faq', $post_id) ) : the_row();
 
                  // Load sub field value.
                  $faq_title = get_sub_field('faq_title');
                  $faq_content = get_sub_field('faq_text');
                  // Do something...
-                 $html .= "<h2>Q: {$faq_title}</h2>
-                           {$faq_content}
-                 ";
+                  $page_html .= dlinq_cc_faq_html($faq_title,$faq_content);  
              // End loop.
              endwhile;
-             return $content . $html;
+             
+            // No value.
+            else :
+                // Do something...
+         endif;
+
+         //Global FAQs
+         if( have_rows('faq', 'option') ):
+            $global_html = '';
+             // Loop through rows and display if activate global faqs === true
+             while( have_rows('faq', 'option') && get_field('activate_global_faqs', 'option') === 'true') : the_row();
+
+                 // Load sub field value.
+                 $faq_title = get_sub_field('faq_title');
+                 $faq_content = get_sub_field('faq_text');
+                 // Do something...
+                 $global_html .= dlinq_cc_faq_html($faq_title,$faq_content);               
+             // End loop.
+             endwhile;
+             return $page_html . $global_html;
             // No value.
             else :
                 // Do something...
@@ -70,7 +91,10 @@ function dlinq_cc_global_faq_repeater($content){
 
 add_filter( 'the_content', 'dlinq_cc_global_faq_repeater');
 
-
+function dlinq_cc_faq_html($title, $content){
+   return "<h2>Q: {$title}</h2>
+            {$content}";
+}
 
 
    //save acf json

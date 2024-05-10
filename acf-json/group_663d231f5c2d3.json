@@ -21,8 +21,8 @@
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "",
-            "button_label": "Add Row",
+            "collapsed": "field_663d232f38593",
+            "button_label": "Add FAQ",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -79,6 +79,13 @@
                 "operator": "==",
                 "value": "global-faqs"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
         ]
     ],
     "menu_order": 0,
@@ -86,9 +93,18 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "format",
+        "featured_image",
+        "tags",
+        "send-trackbacks"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1715282817
+    "modified": 1715345763
 }
