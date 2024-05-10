@@ -79,7 +79,7 @@ function dlinq_cc_global_faq_repeater($content){
                  $global_html .= dlinq_cc_faq_html($faq_title,$faq_content);               
              // End loop.
              endwhile;
-             return $page_html . $global_html;
+             return $page_html . $global_html . $content;
             // No value.
             else :
                 // Do something...
