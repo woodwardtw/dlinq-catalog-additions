@@ -83,6 +83,7 @@ function dlinq_cc_global_faq_repeater($content){
             // No value.
             else :
                 // Do something...
+               return $content;
             endif;
          } else {
             return $content;
