@@ -154,7 +154,7 @@ function dlinq_cc_json_global_faq_repeater(){
             endif;
          } else {
          }
-         return str_replace(PHP_EOL, '',$page_html) . str_replace(PHP_EOL, '', $global_html);
+         return $page_html . $global_html;
    }
 
 
